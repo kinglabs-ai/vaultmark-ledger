@@ -1,8 +1,10 @@
-# vaultmark-ledger
+# VaultMark Public Ledger
+
+Repository: `kinglabs-ai/vaultmark-ledger`
 
 Property of Kingship Holdings Inc. | KingLabs AI
 
-The public, append-only record of VaultMark certificates. Once a day, VaultMark publishes the Merkle root of every certificate issued that UTC day. A Merkle root is one hash built from all of the day's certificate hashes, so changing, adding, removing or reordering any one certificate changes the root. Because these commits are public and timestamped by GitHub, nobody, including Kingship, can quietly rewrite a past day.
+The VaultMark Public Ledger is the public, append-only record of VaultMark certificates. Once a day, VaultMark publishes the Merkle root of every certificate issued that UTC day. A Merkle root is one hash built from all of the day's certificate hashes, so changing, adding, removing or reordering any one certificate changes the root. Because these commits are public and timestamped by GitHub, nobody, including Kingship, can quietly rewrite a past day.
 
 ## Where the roots are
 
@@ -21,7 +23,7 @@ Branch **`ledger`**, one file per day: `roots/YYYY/YYYY-MM-DD.json`
 1. Ask VaultMark's public endpoint `GET /verify/<sha256>` for the certificate's hash, timestamp, signature and chain position.
 2. Get the day's certificate hashes from the certificate owner, in chain order.
 3. Recompute the root with `dailyRoot()` from `@kinglabs-ai/stamp-core` (RFC 6962 Merkle tree: leaf = SHA-256(0x00 || hash), node = SHA-256(0x01 || left || right)).
-4. Compare it with the file for that day on the `ledger` branch.
+4. Compare it with the file for that day on the `ledger` branch of the VaultMark Public Ledger.
 
 ## Signing keys
 
